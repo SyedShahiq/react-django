@@ -6,5 +6,5 @@ from frontend.views import index
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',index,name="index-page"),
-    path('api', include(router.urls), name="lead-api"),
+    path('', include(router.urls), name="lead-api"),
 ]
