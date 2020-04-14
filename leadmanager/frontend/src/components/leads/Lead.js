@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getleads } from '../../actions/leads';
+import { getleads, deleteLead } from '../../actions/leads';
 class Lead extends Component {
     // static PropTypes = {
     //     leads: PropTypes.array.isRequired
     // }
     componentDidMount() {
         this.props.getleads();
+    }
+    deleteFunction(id) {
+        this.props.deleteLead(id);
     }
     render() {
         return (
@@ -20,6 +23,7 @@ class Lead extends Component {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Message</th>
+                            <th />
                         </tr>
                     </thead>
                     <tbody>
@@ -29,6 +33,7 @@ class Lead extends Component {
                                 <td>{lead.name}</td>
                                 <td>{lead.email}</td>
                                 <td>{lead.message}</td>
+                                <td><button className="btn btn-danger" onClick={() => this.deleteFunction(lead.id)}>Delete</button></td>
                             </tr>
                         ))}
                     </tbody>
@@ -41,4 +46,4 @@ class Lead extends Component {
 const mapStateToProps = state => ({
     leads: state.leads.leads
 })
-export default connect(mapStateToProps, { getleads })(Lead)
+export default connect(mapStateToProps, { getleads, deleteLead })(Lead)
