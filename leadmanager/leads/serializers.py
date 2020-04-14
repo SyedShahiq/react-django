@@ -6,4 +6,4 @@ class LeadSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Lead
-        fields = '__all__'
+        fields = 'id','name','email','message'
