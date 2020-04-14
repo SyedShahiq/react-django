@@ -17,5 +17,4 @@ class App extends Component {
         )
     }
 }
-import Form from './leads/Form'
 ReactDOM.render(<App />, document.getElementById('app'))
