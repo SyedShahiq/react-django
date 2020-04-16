@@ -7,4 +7,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',index,name="index-page"),
     path('', include(router.urls), name="lead-api"),
+    path('', include('accounts.urls'), name="registration-api"),
 ]
