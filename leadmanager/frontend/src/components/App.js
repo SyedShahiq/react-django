@@ -14,7 +14,6 @@ import Login from './accounts/Login';
 import PrivateRoute from './common/PrivateRoute';
 
 
-
 const alertOptions = {
     timeout: 3000,
     position: 'top right',

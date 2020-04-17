@@ -1,4 +1,4 @@
-import { GET_LEADS, DELETE_LEAD, ADD_LEAD } from '../actions/types.js';
+import { USER_LOADING, USER_LOADED, AUTH_ERROR } from '../actions/types.js';
 
 const initialState = {
     token: localStorage.getItem('token'),
@@ -9,10 +9,26 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case GET_LEADS:
+        case USER_LOADING:
             return {
                 ...state,
-                leads: action.payload
+                is_loading: true
+            }
+        case USER_LOADED:
+            return {
+                ...state,
+                is_authenticated: true,
+                is_loading: false,
+                user: action.payload
+            }
+        case AUTH_ERROR:
+            localStorage.removeItem('token')
+            return {
+                ...state,
+                token: null,
+                user: null,
+                is_authenticated: false,
+                is_loading: false
             }
         default:
             return state;
