@@ -11,6 +11,7 @@ import Alerts from './layout/Alerts';
 import store from "../store";
 import Register from './accounts/Register';
 import Login from './accounts/Login';
+import PrivateRoute from './common/PrivateRoute';
 
 
 
@@ -30,7 +31,7 @@ class App extends Component {
                         </React.Fragment>
                         <div className="container">
                             <Switch>
-                                <Route exact path="/" component={Dashboard}></Route>
+                                <PrivateRoute exact path="/" component={Dashboard}/>
                                 <Route exact path="/register" component={Register}></Route>
                                 <Route exact path="/login" component={Login}></Route>
                             </Switch>
