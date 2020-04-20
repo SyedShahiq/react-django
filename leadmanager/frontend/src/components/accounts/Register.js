@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { register } from '../../actions/auth'
 
 class Register extends Component {
     state = {
@@ -10,9 +12,19 @@ class Register extends Component {
     }
     onSubmit = e => {
         e.preventDefault();
+        const { username, email, password } = this.state
+        const newuser = {
+            username,
+            email,
+            password
+        }
+        this.props.register(newuser)
     }
     onChange = e => this.setState({ [e.target.name]: e.target.value })
     render() {
+        if (this.props.isAuthenticated) {
+            return <Redirect to="/" />
+        }
         const { username, email, password, password2 } = this.state
         return (
             <div className="col-md-6 m-auto">
@@ -71,4 +83,7 @@ class Register extends Component {
         )
     }
 }
-export default Register;
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.is_authenticated
+})
+export default connect(mapStateToProps, { register })(Register);
