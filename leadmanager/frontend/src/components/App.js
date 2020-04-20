@@ -12,13 +12,16 @@ import store from "../store";
 import Register from './accounts/Register';
 import Login from './accounts/Login';
 import PrivateRoute from './common/PrivateRoute';
-
+import { loadUser } from '../actions/auth';
 
 const alertOptions = {
     timeout: 3000,
     position: 'top right',
 }
 class App extends Component {
+    componentDidMount() {
+        store.dispatch(loadUser());
+    }
     render() {
         return (
             <Provider store={store}>
@@ -30,7 +33,7 @@ class App extends Component {
                         </React.Fragment>
                         <div className="container">
                             <Switch>
-                                <PrivateRoute exact path="/" component={Dashboard}/>
+                                <PrivateRoute exact path="/" component={Dashboard} />
                                 <Route exact path="/register" component={Register}></Route>
                                 <Route exact path="/login" component={Login}></Route>
                             </Switch>
